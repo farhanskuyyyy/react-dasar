@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./components/Elements/Button";
 
 // component with class
 class ButtonPrimary extends React.Component {
@@ -39,8 +40,8 @@ const ButtonRed = () => {
 };
 
 // dynamic component with props / properties
-const Button = (props) => {
-  const { children = "...", variant = 'bg-slate-900' } = props;
+const ButtonDynamic = (props) => {
+  const { children = "...", variant = "bg-slate-900" } = props;
   return (
     <button
       className={`h-10 px-6 font-semibold rounded-md ${variant} text-white`}
@@ -59,9 +60,12 @@ function App() {
         <ButtonBlack></ButtonBlack>
         <ButtonRed></ButtonRed>
 
-        <Button variant="bg-blue-900">Login</Button>
+        <ButtonDynamic variant="bg-blue-900">Login</ButtonDynamic>
+        <ButtonDynamic variant="bg-red-900">Logout</ButtonDynamic>
+        <ButtonDynamic></ButtonDynamic>
+
+        {/* Component with atomic design */}
         <Button variant="bg-red-900">Logout</Button>
-        <Button></Button>
       </div>
     </div>
   );
