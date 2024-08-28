@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
+import { getProducts } from "../services/product.service";
 
 const products = [
   {
@@ -31,6 +32,7 @@ const email = localStorage.getItem("email");
 const ProductsPage = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [products,setProducts] = useState([]);
 
   // componentdidmount , ibaratnya ini get data dari api
   useEffect(() => {
@@ -39,7 +41,7 @@ const ProductsPage = () => {
 
   // useEffect for event state cart
   useEffect(() => {
-    if (cart.length > 0) {
+    if (products.length > 0 && cart.length > 0) {
       // summary total price
       const sum = cart.reduce((acc, item) => {
         const product = products.find((product) => product.id === item.id);
@@ -49,19 +51,26 @@ const ProductsPage = () => {
       setTotalPrice(sum);
       localStorage.setItem("cart", JSON.stringify(cart));
     }
-  }, [cart]);
+  }, [cart,products]);
 
-  // useReff 
-  const totalPriceRef = useRef(null)
+  // useReff
+  const totalPriceRef = useRef(null);
 
-  // useeffect bisa di pake berkali kali bahkan dengan dependency yang sama 
+  // useeffect bisa di pake berkali kali bahkan dengan dependency yang sama
   useEffect(() => {
     if (cart.length > 0) {
-      totalPriceRef.current.style.display = 'table-row';
-    }else{
-      totalPriceRef.current.style.display = 'none';
+      totalPriceRef.current.style.display = "table-row";
+    } else {
+      totalPriceRef.current.style.display = "none";
     }
   }, [cart]);
+
+  // useEffect fetch api
+  useEffect(() => {
+    getProducts((data) => {
+      setProducts(data)
+    });
+  });
 
   const handeLogout = () => {
     localStorage.removeItem("email");
@@ -97,10 +106,10 @@ const ProductsPage = () => {
       </div>
       <div className="flex justify-center mt-4">
         <div className="w-4/6 flex flex-wrap">
-          {products.map((product) => (
+          {products.length > 0 && products.map((product) => (
             <CardProduct key={product.id}>
               <CardProduct.Header image={product.image}></CardProduct.Header>
-              <CardProduct.Body name={product.name}>
+              <CardProduct.Body name={product.title}>
                 {product.description}
               </CardProduct.Body>
               <CardProduct.Footer
@@ -123,27 +132,27 @@ const ProductsPage = () => {
               </tr>
             </thead>
             <tbody>
-              {cart.map((item) => {
+              {products.length > 0 && cart.map((item) => {
                 const product = products.find(
                   (product) => product.id == item.id
                 );
 
                 return (
                   <tr key={item.id}>
-                    <td>{product.name}</td>
+                    <td>{product.title}</td>
                     <td>
-                      {product.price.toLocaleString("id-ID", {
+                      {product.price.toLocaleString("us-US", {
                         style: "currency",
-                        currency: "IDR",
+                        currency: "USD",
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 0,
                       })}
                     </td>
                     <td>{item.qty}</td>
                     <td>
-                      {(item.qty * product.price).toLocaleString("id-ID", {
+                      {(item.qty * product.price).toLocaleString("us-US", {
                         style: "currency",
-                        currency: "IDR",
+                        currency: "USD",
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 0,
                       })}
@@ -156,9 +165,9 @@ const ProductsPage = () => {
                   Total Price
                 </td>
                 <td className="font-bold">
-                  {totalPrice.toLocaleString("id-ID", {
+                  {totalPrice.toLocaleString("us-US", {
                     style: "currency",
-                    currency: "IDR",
+                    currency: "USD",
                     minimumFractionDigits: 0,
                     maximumFractionDigits: 0,
                   })}
