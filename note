@@ -15,3 +15,11 @@
 - contohnya cart yang ditambahin itu efek ke total price 
 - sama kaya componentdidmount , dan parameter keduanya itu componentdidupdate
 - ini jadi 2 fungsi jadi satu di componente stateless 
+
+# useRef
+- bedanya sama useEffect , useRef tidak akan merender ulang component
+- kalo useState kan ada setter function , kalo useRef gada 
+- useRef ini juga ga langsung ngubah tampilan kaya useState , tapi aksi ketika dia simpan 
+ke local storage akan tetep berjalan 
+- useRef juga bisa digunakan untuk manipulasi DOM 
+- contohnya ketika kita ingin buat auto focus ke suatu input ketika pertama kali diload di page login 

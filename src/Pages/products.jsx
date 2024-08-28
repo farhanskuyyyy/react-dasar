@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
 
@@ -48,6 +48,18 @@ const ProductsPage = () => {
 
       setTotalPrice(sum);
       localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
+
+  // useReff 
+  const totalPriceRef = useRef(null)
+
+  // useeffect bisa di pake berkali kali bahkan dengan dependency yang sama 
+  useEffect(() => {
+    if (cart.length > 0) {
+      totalPriceRef.current.style.display = 'table-row';
+    }else{
+      totalPriceRef.current.style.display = 'none';
     }
   }, [cart]);
 
@@ -139,7 +151,7 @@ const ProductsPage = () => {
                   </tr>
                 );
               })}
-              <tr>
+              <tr ref={totalPriceRef}>
                 <td colSpan="3" className="font-bold">
                   Total Price
                 </td>
