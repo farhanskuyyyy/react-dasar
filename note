@@ -23,3 +23,8 @@
 ke local storage akan tetep berjalan 
 - useRef juga bisa digunakan untuk manipulasi DOM 
 - contohnya ketika kita ingin buat auto focus ke suatu input ketika pertama kali diload di page login 
+
+# hooks 
+- user bisa buat hooks sendiri 
+- untuk penamaannya wajib diawali dengan use , contoh useLogin
+- ini bisa sangat membantu reusable function , seperti bisa menjadi fungsi untuk middleware

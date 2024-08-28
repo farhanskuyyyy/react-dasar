@@ -3,14 +3,13 @@ import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
 import { getProducts } from "../services/product.service";
 import { getUsername } from "../services/auth.service";
-
-const token = localStorage.getItem("token");
+import { useLogin } from "../hooks/useLogin";
 
 const ProductsPage = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState([]);
-  const [username, setUsername] = useState("");
+  const username = useLogin();
 
   // componentdidmount , ibaratnya ini get data dari api
   useEffect(() => {
@@ -49,14 +48,6 @@ const ProductsPage = () => {
       setProducts(data);
     });
   });
-
-  useEffect(() => {
-    if (token) {
-      setUsername(getUsername(token));
-    } else {
-      window.location.href = "/login";
-    }
-  }, []);
 
   const handeLogout = () => {
     localStorage.removeItem("token");
