@@ -1,0 +1,4 @@
+# use state 
+- component dibagi jadi 2 , stateless dan statefull component 
+- stateless itu yang pake fungsi , dan statefull itu yang pake class react.component 
+- untuk impplement state dulu harus pake statefull component , tetapi sekarang bisa pake stateless menggunakan usestate

@@ -1,8 +1,10 @@
+import Button from "../Elements/Button";
+
 const CardProduct = (props) => {
   const { children } = props;
 
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-3 mx-2 flex flex-col justify-between">
+    <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-3 mx-2 my-2 flex flex-col justify-between">
       {children}
     </div>
   );
@@ -34,16 +36,25 @@ const Body = (props) => {
 };
 
 const Footer = (props) => {
-  const { price } = props;
+  const { id, price, handleAddToCart } = props;
   return (
     <div className="flex items-center justify-between p-2">
-      <span className="text-xl font-bold text-white">{price}</span>
-      <a
-        href="#"
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      <span className="text-xl font-bold text-white">
+        {price.toLocaleString("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })}
+      </span>
+      <Button
+        classname="bg-blue-500"
+        onClick={() => {
+          handleAddToCart(id);
+        }}
       >
         Add To Cart
-      </a>
+      </Button>
     </div>
   );
 };
