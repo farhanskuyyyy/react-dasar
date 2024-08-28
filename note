@@ -9,3 +9,9 @@
 - jadi untuk constructor biasanya digunakan untuk initialize state / props
 - dan componentDidMount akan di exec setelah render biasanya digunakan untuk pengambilan data
 - componentDidUpdate akan di exec setelah adanya perubahan state / props 
+
+# useEffect 
+- hooks untuk manipulasi component , untuk syncronize antar component 
+- contohnya cart yang ditambahin itu efek ke total price 
+- sama kaya componentdidmount , dan parameter keduanya itu componentdidupdate
+- ini jadi 2 fungsi jadi satu di componente stateless 

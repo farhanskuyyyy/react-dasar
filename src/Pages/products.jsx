@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
 
@@ -29,12 +29,27 @@ const products = [
 const email = localStorage.getItem("email");
 
 const ProductsPage = () => {
-  const [cart, setCart] = useState([
-    {
-      id: 1,
-      qty: 1,
-    },
-  ]);
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // componentdidmount , ibaratnya ini get data dari api
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+  }, []);
+
+  // useEffect for event state cart
+  useEffect(() => {
+    if (cart.length > 0) {
+      // summary total price
+      const sum = cart.reduce((acc, item) => {
+        const product = products.find((product) => product.id === item.id);
+        return acc + product.price * item.qty;
+      }, 0);
+
+      setTotalPrice(sum);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
   const handeLogout = () => {
     localStorage.removeItem("email");
@@ -124,6 +139,19 @@ const ProductsPage = () => {
                   </tr>
                 );
               })}
+              <tr>
+                <td colSpan="3" className="font-bold">
+                  Total Price
+                </td>
+                <td className="font-bold">
+                  {totalPrice.toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  })}
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
