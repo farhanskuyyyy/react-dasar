@@ -2,3 +2,10 @@
 - component dibagi jadi 2 , stateless dan statefull component 
 - stateless itu yang pake fungsi , dan statefull itu yang pake class react.component 
 - untuk impplement state dulu harus pake statefull component , tetapi sekarang bisa pake stateless menggunakan usestate
+
+
+# lifecycle
+- urutannya lifecylce sederhana react : constructor -> render - > componentDidMount -> render lagi (state) -> componentDidUpdate
+- jadi untuk constructor biasanya digunakan untuk initialize state / props
+- dan componentDidMount akan di exec setelah render biasanya digunakan untuk pengambilan data
+- componentDidUpdate akan di exec setelah adanya perubahan state / props 
