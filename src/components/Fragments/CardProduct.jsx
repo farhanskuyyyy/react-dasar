@@ -2,7 +2,7 @@ const CardProduct = (props) => {
   const { children } = props;
 
   return (
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-3 mx-2">
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-3 mx-2 flex flex-col justify-between">
       {children}
     </div>
   );
@@ -18,12 +18,12 @@ const Header = (props) => {
 };
 
 const Body = (props) => {
-  const { children, title } = props;
+  const { children, name } = props;
   return (
-    <div class="p-2">
+    <div class="p-2 h-full">
       <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {title}
+          {name}
         </h5>
       </a>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
