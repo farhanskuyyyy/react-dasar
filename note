@@ -28,3 +28,9 @@ ke local storage akan tetep berjalan
 - user bisa buat hooks sendiri 
 - untuk penamaannya wajib diawali dengan use , contoh useLogin
 - ini bisa sangat membantu reusable function , seperti bisa menjadi fungsi untuk middleware
+
+# redux 
+- memudahkan untuk mengirimkan data ke parent paling atas
+- contohnya ketika dari Elements ingin mengirim data ke Layouts , tidak perlu melewati Fragments
+- mirip kaya context di golang 
+- lifecycle redux reducer -> store -> dispacth -> reducer -> store -> subscribe 
