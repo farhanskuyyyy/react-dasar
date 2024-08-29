@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "../Elements/Button";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/cartSlice";
 
 const CardProduct = (props) => {
   const { children } = props;
@@ -41,7 +43,8 @@ const Body = (props) => {
 };
 
 const Footer = (props) => {
-  const { id, price, handleAddToCart } = props;
+  const { id, price } = props;
+  const dispatch = useDispatch();
   return (
     <div className="flex items-center justify-between p-2">
       <span className="text-xl font-bold text-white">
@@ -55,7 +58,7 @@ const Footer = (props) => {
       <Button
         classname="bg-blue-500"
         onClick={() => {
-          handleAddToCart(id);
+          dispatch(addToCart({ id, qty: 1 }));
         }}
       >
         Add To Cart
