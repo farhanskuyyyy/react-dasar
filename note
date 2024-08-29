@@ -34,3 +34,9 @@ ke local storage akan tetep berjalan
 - contohnya ketika dari Elements ingin mengirim data ke Layouts , tidak perlu melewati Fragments
 - mirip kaya context di golang 
 - lifecycle redux reducer -> store -> dispacth -> reducer -> store -> subscribe 
+
+# redux toolkit 
+- ini yang lebih terbaru , yang redux biasa sudah deprecated 
+
+# redux with slice 
+- ini lebih simple lagi , bisa gabungin action sama reducer 
