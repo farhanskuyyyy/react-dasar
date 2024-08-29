@@ -40,3 +40,8 @@ ke local storage akan tetep berjalan
 
 # redux with slice 
 - ini lebih simple lagi , bisa gabungin action sama reducer 
+
+# useContext
+- ini memungkinkan akses props parent dari child tanpa ngirim data props dari parent 
+- ini mirip mirip sama redux 
+- fungsinya sama , useContext dibuat react untuk memudahkan 
