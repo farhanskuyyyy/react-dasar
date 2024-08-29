@@ -45,3 +45,6 @@ ke local storage akan tetep berjalan
 - ini memungkinkan akses props parent dari child tanpa ngirim data props dari parent 
 - ini mirip mirip sama redux 
 - fungsinya sama , useContext dibuat react untuk memudahkan 
+
+# useReducer 
+- mirip kaya useContext cuman beda implementasinya 
